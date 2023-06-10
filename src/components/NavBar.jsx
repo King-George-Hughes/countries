@@ -6,8 +6,8 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
   return (
     <nav
       className={`${
-        darkMode ? "bg-darkModeBackground " : "bg-lightModeBackground"
-      } + " w-full h-[80px] p-2`}
+        darkMode ? "bg-darkModeElements " : "bg-white"
+      } " w-full h-[65px] p-2 shadow-lg`}
     >
       <div
         className={`${

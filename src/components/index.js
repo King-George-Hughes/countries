@@ -1,4 +1,4 @@
 import NavBar from "./NavBar";
-import Layout from "./Layout";
+import Countries from "./Countries";
 
-export { NavBar, Layout };
+export { NavBar, Countries };
