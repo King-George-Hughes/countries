@@ -41,8 +41,6 @@ const HomePage = ({ darkMode }) => {
       }`}
     >
       <div className="container">
-        <h1>Hello world</h1>
-
         <motion.div
           variants={countryVariantParent}
           initial="hidden"
