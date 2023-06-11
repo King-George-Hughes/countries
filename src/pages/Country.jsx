@@ -46,6 +46,7 @@ const Country = ({ darkMode }) => {
     topLevelDomain,
     currencies,
     languages,
+    borders,
   } = country;
 
   if (loading) {
@@ -89,13 +90,15 @@ const Country = ({ darkMode }) => {
               <motion.div variants={countryVariant} className="w-full md:w-1/2">
                 <h5 className="text-sm my-2">
                   <span className="font-bold">Native Name: </span>
-                  {nativeName}
+                  {nativeName ? nativeName : "NA"}
                 </h5>
                 <h5 className="text-sm my-2">
                   <span className="font-bold">Population: </span>
-                  {new Intl.NumberFormat({
-                    style: "currency",
-                  }).format(population)}
+                  {population
+                    ? new Intl.NumberFormat({
+                        style: "currency",
+                      }).format(population)
+                    : "NA"}
                 </h5>
                 <h5 className="text-sm my-2">
                   <span className="font-bold">Region: </span>
@@ -103,7 +106,7 @@ const Country = ({ darkMode }) => {
                 </h5>
                 <h5 className="text-sm my-2">
                   <span className="font-bold">Sub Region: </span>
-                  {subregion}
+                  {subregion ? subregion : "NA"}
                 </h5>
                 <h5 className="text-sm my-2">
                   <span className="font-bold">Capital: </span>
@@ -113,7 +116,7 @@ const Country = ({ darkMode }) => {
               <motion.div variants={countryVariant} className="w-full md:w-1/2">
                 <h5 className="text-sm my-2">
                   <span className="font-bold">Top Level Domian: </span>
-                  {topLevelDomain}
+                  {topLevelDomain ? topLevelDomain : "NA"}
                 </h5>
                 <h5 className="text-sm my-2">
                   <span className="font-bold">Sub Region: </span>
@@ -121,11 +124,30 @@ const Country = ({ darkMode }) => {
                 </h5>
                 <h5 className="text-sm my-2">
                   <span className="font-bold">Languages: </span>
-                  {languages[0].name}
+                  {languages ? languages[0].name : "NA"}
                 </h5>
               </motion.div>
             </div>
-            <div className="w-full"></div>
+            <div className="w-full mt-10">
+              <motion.h5 variants={countryVariant} className="text-sm my-2">
+                <span className="font-bold">Border Countries: </span>
+
+                {borders
+                  ? borders.map((boder) => {
+                      return (
+                        <span
+                          className={`${
+                            darkMode ? "bg-darkModeElements" : "bg-white"
+                          } inline-block px-5 my-1 py-1 shadow-md mx-1 rounded-md`}
+                          key={boder}
+                        >
+                          {boder}
+                        </span>
+                      );
+                    })
+                  : "NA"}
+              </motion.h5>
+            </div>
           </div>
         </motion.div>
       </div>
