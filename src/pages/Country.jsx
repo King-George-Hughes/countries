@@ -76,7 +76,7 @@ const Country = ({ darkMode }) => {
           variants={countryVariantParent}
           initial="hidden"
           animate="show"
-          className="w-full h-full mt-10 flex flex-col gap-20 items-center justify-center md:flex-row"
+          className="w-full h-full mt-10 px-[50px] flex flex-col gap-20 items-center justify-center md:flex-row md:px-0"
         >
           <motion.div variants={countryVariant} className="w-full md:w-1/2">
             <img src={flags.svg} alt="" className="w-full" />
@@ -132,13 +132,15 @@ const Country = ({ darkMode }) => {
               <motion.h5 variants={countryVariant} className="text-sm my-2">
                 <span className="font-bold">Border Countries: </span>
 
+                <br className="md:hidden" />
+
                 {borders
                   ? borders.map((boder) => {
                       return (
                         <span
                           className={`${
                             darkMode ? "bg-darkModeElements" : "bg-white"
-                          } inline-block px-5 my-1 py-1 shadow-md mx-1 rounded-md`}
+                          } inline-block px-5 my-1 py-1 shadow-md mx-1 rounded-sm`}
                           key={boder}
                         >
                           {boder}

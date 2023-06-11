@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const Loading = ({ darkMode }) => {
-  console.log(darkMode);
+  // console.log(darkMode);
 
   return (
     <div
