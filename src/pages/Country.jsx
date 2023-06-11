@@ -95,9 +95,7 @@ const Country = ({ darkMode }) => {
                 <h5 className="text-sm my-2">
                   <span className="font-bold">Population: </span>
                   {population
-                    ? new Intl.NumberFormat({
-                        style: "currency",
-                      }).format(population)
+                    ? new Intl.NumberFormat().format(population)
                     : "NA"}
                 </h5>
                 <h5 className="text-sm my-2">

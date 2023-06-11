@@ -26,9 +26,7 @@ const Countries = ({ name, flags, population, region, capital, darkMode }) => {
           <h2 className="font-bold mb-2">{name.common}</h2>
           <h5 className="text-sm my-1">
             <span className="font-bold">Population: </span>
-            {new Intl.NumberFormat({
-              style: "currency",
-            }).format(population)}
+            {new Intl.NumberFormat().format(population)}
           </h5>
           <h5 className="text-sm my-1">
             <span className="font-bold">Region: </span>
