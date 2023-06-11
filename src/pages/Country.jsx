@@ -66,7 +66,7 @@ const Country = ({ darkMode }) => {
           to={"/"}
           className={`${
             darkMode ? "bg-darkModeElements" : "bg-white"
-          } px-10 mt-12 mb-5 py-2 inline-flex items-center gap-3 shadow-md rounded-md`}
+          } px-10 mt-12 mb-5 ml-[50px] py-2 inline-flex items-center gap-3 shadow-md rounded-md md:ml-0`}
         >
           <BsArrowLeft />
           Back
