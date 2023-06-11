@@ -7,7 +7,7 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
     <nav
       className={`${
         darkMode ? "bg-darkModeElements " : "bg-white"
-      } " w-full h-[65px] p-2 shadow-lg`}
+      } " absolute w-full h-[65px] p-2 shadow-sm`}
     >
       <div
         className={`${

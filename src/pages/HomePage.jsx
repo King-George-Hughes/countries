@@ -24,7 +24,7 @@ const HomePage = ({ darkMode }) => {
 
   return (
     <div
-      className={`w-full pt-5 pb-20 ${
+      className={`w-full min-h-screen pt-[80px] pb-20 ${
         darkMode
           ? "bg-darkModeBackground text-darkModeTextAndLightModeElements"
           : "bg-lightModeBackground text-lightModeText"
@@ -37,7 +37,7 @@ const HomePage = ({ darkMode }) => {
           variants={countryVariantParent}
           initial="hidden"
           animate="show"
-          className="w-full flex flex-col gap-12 md:flex-row md:items-center md:justify-start md:flex-wrap"
+          className="w-full px-[50px] flex flex-col gap-12 md:flex-row md:items-center md:justify-center md:flex-wrap md:px-0"
         >
           {allCountries.map((country) => {
             return (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavBar } from "./components";
+import { NavBar, Loading } from "./components";
 import { HomePage, Country } from "./pages";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -20,6 +20,7 @@ function App() {
           path="/country/:countryName"
           element={<Country darkMode={darkMode} />}
         />
+        <Route path="/loading" element={<Loading darkMode={darkMode} />} />
       </Routes>
     </Router>
   );
