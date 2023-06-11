@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
+import { Loading } from "../components";
 
 const Country = ({ darkMode }) => {
   const [loading, setLoading] = useState(true);
@@ -12,12 +13,12 @@ const Country = ({ darkMode }) => {
     setLoading(true);
 
     try {
-      //   const response = await fetch(
-      //     `https://restcountries.com/v2/name/${countryName}`
-      //   );
       const response = await fetch(
-        `https://restcountries.com/v3.1/name/${countryName}`
+        `https://restcountries.com/v2/name/${countryName}`
       );
+      //   const response = await fetch(
+      //     `https://restcountries.com/v3.1/name/${countryName}`
+      //   );
       const data = await response.json();
       setLoading(false);
       setCountry(data[0]);
@@ -29,9 +30,8 @@ const Country = ({ darkMode }) => {
   };
 
   useEffect(() => {
-    // fetch(`https://restcountries.com/v3.1/name/${countryName}`)
     fectCountryByName();
-  }, []);
+  }, [countryName]);
 
   const {
     name,
@@ -47,7 +47,7 @@ const Country = ({ darkMode }) => {
   } = country;
 
   if (loading) {
-    return <h1 className="text-7xl text-red-700">Fetching Data</h1>;
+    return <Loading />;
   }
 
   return (
@@ -70,9 +70,7 @@ const Country = ({ darkMode }) => {
         </Link>
 
         <div className="w-full mt-10 flex flex-col items-center justify-center md:flex-row">
-          <h1>{name.common}</h1>
-          <img src={flags.svg} alt="" />
-          {/* <div className="w-full md:w-1/2">
+          <div className="w-full md:w-1/2">
             <img src={flags.svg} alt="" />
           </div>
 
@@ -110,16 +108,16 @@ const Country = ({ darkMode }) => {
                 </h5>
                 <h5 className="text-sm my-1">
                   <span className="font-bold">Sub Region: </span>
-                  {currencies[0].code}
+                  {currencies[0].name}
                 </h5>
                 <h5 className="text-sm my-1">
                   <span className="font-bold">Languages: </span>
-                  {capital[0].nativeName}
+                  {languages[0].name}
                 </h5>
               </div>
             </div>
             <div className="w-full"></div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

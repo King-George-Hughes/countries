@@ -7,7 +7,7 @@ const countryVariantParent = {
   hidden: { opacity: 1 },
   show: {
     opacity: 1,
-    transition: { delayChildren: 0.3, staggerChildren: 0.1 },
+    transition: { delayChildren: 0.3, staggerChildren: 0.12 },
   },
 };
 

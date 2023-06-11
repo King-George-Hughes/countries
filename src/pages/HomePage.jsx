@@ -1,26 +1,36 @@
 import { useState, useEffect } from "react";
-import { Countries } from "../components";
+import { Countries, Loading } from "../components";
 import { motion } from "framer-motion";
 import { countryVariantParent } from "../lib/motion";
 import PropTypes from "prop-types";
 
 const HomePage = ({ darkMode }) => {
+  const [loading, setLoading] = useState(true);
   const [allCountries, setAllCountries] = useState([]);
 
   // Get All Countries
   const getAllCountries = async () => {
-    const response = await fetch(
-      "https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region"
-    );
-    // const response = await fetch("https://restcountries.com/v2/all");
-    const data = await response.json();
-    setAllCountries(data);
-    console.log(data);
+    try {
+      const response = await fetch(
+        "https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region"
+      );
+      // const response = await fetch("https://restcountries.com/v2/all");
+      const data = await response.json();
+      setLoading(false);
+      setAllCountries(data);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     getAllCountries();
   }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div
