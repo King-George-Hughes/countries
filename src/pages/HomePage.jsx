@@ -82,7 +82,7 @@ const HomePage = ({ darkMode }) => {
           variants={countryVariantParent}
           initial="hidden"
           animate="show"
-          className="w-full px-[50px] flex flex-col gap-12 md:flex-row md:items-center md:justify-center md:flex-wrap md:px-0"
+          className="w-full px-[50px] flex flex-col gap-12 md:flex-row md:items-center md:justify-evenly md:flex-wrap md:px-0"
         >
           {allCountries.map((country) => {
             return (

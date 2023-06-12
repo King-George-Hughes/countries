@@ -12,7 +12,7 @@ const FilterCountry = ({ darkMode, onSelect }) => {
       region: "Americas",
     },
     {
-      region: "Antartic",
+      region: "Antarctic",
     },
     {
       region: "Asia",
@@ -25,14 +25,16 @@ const FilterCountry = ({ darkMode, onSelect }) => {
     },
   ];
 
-  const selectHandler = (e) => {
-    const regionName = e.target.value;
-    onSelect(regionName);
+  const selectRegionName = (e) => {
+    const filterBtn = document.querySelector(".filter_btn");
+    let filterValue = `${e.target.dataset.region}`;
+    filterBtn.textContent = filterValue;
+    // const regionName = e.target.value;
+    onSelect(filterValue);
   };
 
   return (
     <div
-      onChange={selectHandler}
       className={`${
         darkMode
           ? "bg-darkModeElements text-darkModeTextAndLightModeElements"
@@ -41,24 +43,25 @@ const FilterCountry = ({ darkMode, onSelect }) => {
       onMouseEnter={() => setShowFilterMenu(true)}
       onMouseLeave={() => setShowFilterMenu(false)}
     >
-      <div>Filter By Region</div>
+      <button className="filter_btn">Filter By Region</button>
       {showFilterMenu && (
         <div
           className={`${
             darkMode
               ? "bg-darkModeElements text-darkModeTextAndLightModeElements"
               : "bg-white text-lightModeInput"
-          } absolute w-full top-[52px] left-0 flex flex-col items-start z-30 rounded-md shadow-md py-3 px-5`}
+          } absolute w-full top-[52px] left-0 flex flex-col items-start z-30 rounded-md shadow-md py-3 px-5 cursor-pointer`}
         >
           {allRegions.map((region) => {
             return (
-              <button
-                value={region.region}
+              <div
+                data-region={region.region}
                 key={region.region}
                 className="my-1"
+                onClick={selectRegionName}
               >
                 {region.region}
-              </button>
+              </div>
             );
           })}
         </div>
