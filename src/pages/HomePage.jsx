@@ -14,7 +14,6 @@ const HomePage = ({ darkMode }) => {
       const response = await fetch(
         "https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region"
       );
-      // const response = await fetch("https://restcountries.com/v2/all");
       const data = await response.json();
       setLoading(false);
       setAllCountries(data);
@@ -72,7 +71,7 @@ const HomePage = ({ darkMode }) => {
     >
       <div className="container">
         {/* Search */}
-        <div className="w-full px-[50px] my-10 flex flex-col gap-10 md:flex-row md:justify-between md:px-2">
+        <div className="w-full px-[50px] my-10 flex flex-col gap-10 md:flex-row md:justify-between md:px-0">
           <SearchInput darkMode={darkMode} onSearch={getCountryByName} />
           <FilterCountry darkMode={darkMode} onSelect={getCountryByRegion} />
         </div>
