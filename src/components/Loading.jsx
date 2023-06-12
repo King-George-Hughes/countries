@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 
 const Loading = ({ darkMode }) => {
-  // console.log(darkMode);
-
   return (
     <div
       className={`w-full min-h-screen pt-[80px] pb-20 flex items-center justify-center ${

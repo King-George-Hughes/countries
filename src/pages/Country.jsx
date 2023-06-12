@@ -50,7 +50,7 @@ const Country = ({ darkMode }) => {
   } = country;
 
   if (loading) {
-    return <Loading />;
+    return <Loading darkMode={darkMode} />;
   }
 
   return (

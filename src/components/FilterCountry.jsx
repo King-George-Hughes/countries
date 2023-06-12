@@ -40,8 +40,12 @@ const FilterCountry = ({ darkMode, onSelect }) => {
           ? "bg-darkModeElements text-darkModeTextAndLightModeElements"
           : "bg-white text-lightModeInput"
       } w-1/2 h-[50px] md:w-1/6 shadow-md rounded-md flex items-center gap-5 px-5 outline-none relative`}
-      onMouseEnter={() => setShowFilterMenu(true)}
-      onMouseLeave={() => setShowFilterMenu(false)}
+      onMouseEnter={() =>
+        setShowFilterMenu((prevState) => {
+          if (prevState === false) return true;
+          else return false;
+        })
+      }
     >
       <button className="filter_btn">Filter By Region</button>
       {showFilterMenu && (
