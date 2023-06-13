@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
 const HomePage = ({ darkMode }) => {
   const [loading, setLoading] = useState(true);
   const [allCountries, setAllCountries] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const [onSearch, setOnSearch] = useState([]);
 
   // Get All Countries
   const getAllCountries = async () => {
@@ -23,18 +25,36 @@ const HomePage = ({ darkMode }) => {
     }
   };
 
-  //   Get Country by Name
-  const getCountryByName = async (countryName) => {
-    try {
-      const response = await fetch(
-        `https://restcountries.com/v3.1/name/${countryName}?fullText=true`
+  // //   Get Country by Name
+  // const getCountryByName = async (countryName) => {
+  //   try {
+  //     const response = await fetch(
+  //       `https://restcountries.com/v3.1/name/${countryName}?fullText=true`
+  //     );
+  //     const data = await response.json();
+  //     setLoading(false);
+  //     setAllCountries(data);
+  //   } catch (error) {
+  //     setLoading(false);
+  //     console.log(error);
+  //   }
+  // };
+
+  // // Get Country by Name
+  const searchCountry = (searchData) => {
+    setSearchInput(searchData);
+
+    if (searchInput) {
+      const searchingCountry = allCountries.filter((country) =>
+        Object.values(country.name.common)
+          .join("")
+          .toLowerCase()
+          .includes(searchData.toLowerCase())
       );
-      const data = await response.json();
-      setLoading(false);
-      setAllCountries(data);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
+      console.log(searchingCountry);
+      setOnSearch(searchingCountry);
+    } else {
+      setOnSearch(allCountries);
     }
   };
 
@@ -72,7 +92,12 @@ const HomePage = ({ darkMode }) => {
       <div className="container">
         {/* Search */}
         <div className="w-full px-[50px] my-10 flex flex-col gap-10 md:flex-row md:justify-between md:px-0">
-          <SearchInput darkMode={darkMode} onSearch={getCountryByName} />
+          {/* <SearchInput darkMode={darkMode} onSearch={getCountryByName} /> */}
+          <SearchInput
+            darkMode={darkMode}
+            searchInput={searchInput}
+            searchCountry={searchCountry}
+          />
           <FilterCountry darkMode={darkMode} onSelect={getCountryByRegion} />
         </div>
 
@@ -83,15 +108,25 @@ const HomePage = ({ darkMode }) => {
           animate="show"
           className="w-full px-[50px] flex flex-col gap-12 md:flex-row md:items-center md:justify-evenly md:flex-wrap md:px-0"
         >
-          {allCountries.map((country) => {
-            return (
-              <Countries
-                darkMode={darkMode}
-                key={country.name.common}
-                {...country}
-              />
-            );
-          })}
+          {searchInput.length > 1
+            ? onSearch.map((country) => {
+                return (
+                  <Countries
+                    darkMode={darkMode}
+                    key={country.name.common}
+                    {...country}
+                  />
+                );
+              })
+            : allCountries.map((country) => {
+                return (
+                  <Countries
+                    darkMode={darkMode}
+                    key={country.name.common}
+                    {...country}
+                  />
+                );
+              })}
         </motion.div>
       </div>
     </div>
