@@ -4,7 +4,7 @@ import { useState } from "react";
 const FilterCountry = ({ darkMode, onSelect }) => {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
-  const allRegions = [
+  const regions = [
     {
       region: "Africa",
     },
@@ -25,11 +25,10 @@ const FilterCountry = ({ darkMode, onSelect }) => {
     },
   ];
 
-  const selectRegionName = (e) => {
+  const selectRegion = (e) => {
     const filterBtn = document.querySelector(".filter_btn");
     let filterValue = `${e.target.dataset.region}`;
     filterBtn.textContent = filterValue;
-    // const regionName = e.target.value;
     onSelect(filterValue);
   };
 
@@ -52,13 +51,13 @@ const FilterCountry = ({ darkMode, onSelect }) => {
               : "bg-white text-lightModeInput"
           } absolute w-full top-[52px] left-0 flex flex-col items-start z-30 rounded-md shadow-md py-3 px-5 cursor-pointer`}
         >
-          {allRegions.map((region) => {
+          {regions.map((region) => {
             return (
               <div
                 data-region={region.region}
                 key={region.region}
                 className="my-1"
-                onClick={selectRegionName}
+                onClick={selectRegion}
               >
                 {region.region}
               </div>
