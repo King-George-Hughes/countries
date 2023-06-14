@@ -6,7 +6,11 @@ import PropTypes from "prop-types";
 
 const HomePage = ({ darkMode }) => {
   const [loading, setLoading] = useState(true);
+
+  // All Countries
   const [allCountries, setAllCountries] = useState([]);
+
+  // For Search
   const [searchInput, setSearchInput] = useState("");
   const [onSearch, setOnSearch] = useState([]);
 
@@ -15,54 +19,6 @@ const HomePage = ({ darkMode }) => {
     try {
       const response = await fetch(
         "https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region"
-      );
-      const data = await response.json();
-      setLoading(false);
-      setAllCountries(data);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  };
-
-  // //   Get Country by Name
-  // const getCountryByName = async (countryName) => {
-  //   try {
-  //     const response = await fetch(
-  //       `https://restcountries.com/v3.1/name/${countryName}?fullText=true`
-  //     );
-  //     const data = await response.json();
-  //     setLoading(false);
-  //     setAllCountries(data);
-  //   } catch (error) {
-  //     setLoading(false);
-  //     console.log(error);
-  //   }
-  // };
-
-  // // Get Country by Name
-  const searchCountry = (searchData) => {
-    setSearchInput(searchData);
-
-    if (searchInput) {
-      const searchingCountry = allCountries.filter((country) =>
-        Object.values(country.name.common)
-          .join("")
-          .toLowerCase()
-          .includes(searchData.toLowerCase())
-      );
-      console.log(searchingCountry);
-      setOnSearch(searchingCountry);
-    } else {
-      setOnSearch(allCountries);
-    }
-  };
-
-  //   Get Country by Region
-  const getCountryByRegion = async (regionName) => {
-    try {
-      const response = await fetch(
-        `https://restcountries.com/v3.1/region/${regionName}`
       );
       const data = await response.json();
       setLoading(false);
@@ -95,10 +51,17 @@ const HomePage = ({ darkMode }) => {
           {/* <SearchInput darkMode={darkMode} onSearch={getCountryByName} /> */}
           <SearchInput
             darkMode={darkMode}
+            allCountries={allCountries}
+            setSearchInput={setSearchInput}
             searchInput={searchInput}
-            searchCountry={searchCountry}
+            setOnSearch={setOnSearch}
           />
-          <FilterCountry darkMode={darkMode} onSelect={getCountryByRegion} />
+          <FilterCountry
+            darkMode={darkMode}
+            setLoading={setLoading}
+            setAllCountries={setAllCountries}
+            // onSelect={getCountryByRegion}
+          />
         </div>
 
         {/* Contetent */}

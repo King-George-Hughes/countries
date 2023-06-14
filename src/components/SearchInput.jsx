@@ -1,15 +1,30 @@
-import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import PropTypes from "prop-types";
 
-const SearchInput = ({ darkMode, searchCountry, searchInput }) => {
-  // const [input, setInput] = useState("");
+const SearchInput = ({
+  darkMode,
+  allCountries,
+  setOnSearch,
+  setSearchInput,
+  searchInput,
+}) => {
+  // Get Country by Name
+  const searchCountry = (searchData) => {
+    setSearchInput(searchData);
 
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-
-  //   onSearch(input);
-  // };
+    if (searchInput) {
+      const searchingCountry = allCountries.filter((country) =>
+        Object.values(country.name.common)
+          .join("")
+          .toLowerCase()
+          .includes(searchData.toLowerCase())
+      );
+      console.log(searchingCountry);
+      setOnSearch(searchingCountry);
+    } else {
+      setOnSearch(allCountries);
+    }
+  };
 
   return (
     <div
@@ -34,50 +49,10 @@ const SearchInput = ({ darkMode, searchCountry, searchInput }) => {
 
 SearchInput.propTypes = {
   darkMode: PropTypes.any,
-  searchCountry: PropTypes.any,
+  allCountries: PropTypes.any,
+  setOnSearch: PropTypes.any,
+  setSearchInput: PropTypes.any,
   searchInput: PropTypes.any,
 };
 
 export default SearchInput;
-
-// import { useState } from "react";
-// import { BsSearch } from "react-icons/bs";
-// import PropTypes from "prop-types";
-
-// const SearchInput = ({ darkMode, onSearch }) => {
-//   const [input, setInput] = useState("");
-
-//   const submitHandler = (e) => {
-//     e.preventDefault();
-
-//     onSearch(input);
-//   };
-
-//   return (
-//     <div
-//       className={`${
-//         darkMode ? "bg-darkModeElements" : "bg-white"
-//       } w-full h-[50px] md:w-1/3 shadow-md rounded-md flex items-center gap-5 px-5`}
-//     >
-//       <BsSearch />
-//       <form onSubmit={submitHandler}>
-//         <input
-//           type="text"
-//           placeholder="Search for a country..."
-//           name="search"
-//           value={input}
-//           onChange={(e) => setInput(e.target.value)}
-//           className="bg-transparent outline-none w-full"
-//         />
-//       </form>
-//     </div>
-//   );
-// };
-
-// SearchInput.propTypes = {
-//   darkMode: PropTypes.any,
-//   onSearch: PropTypes.any,
-//   allCountries: PropTypes.any,
-// };
-
-// export default SearchInput;

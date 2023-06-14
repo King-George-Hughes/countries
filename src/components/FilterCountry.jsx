@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const FilterCountry = ({ darkMode, onSelect }) => {
+const FilterCountry = ({ darkMode, setAllCountries, setLoading }) => {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
   const regions = [
@@ -25,11 +25,26 @@ const FilterCountry = ({ darkMode, onSelect }) => {
     },
   ];
 
+  //   Get Country by Region
+  const getCountryByRegion = async (regionName) => {
+    try {
+      const response = await fetch(
+        `https://restcountries.com/v3.1/region/${regionName}`
+      );
+      const data = await response.json();
+      setLoading(false);
+      setAllCountries(data);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
   const selectRegion = (e) => {
     const filterBtn = document.querySelector(".filter_btn");
     let filterValue = `${e.target.dataset.region}`;
     filterBtn.textContent = filterValue;
-    onSelect(filterValue);
+    getCountryByRegion(filterValue);
   };
 
   return (
@@ -71,7 +86,8 @@ const FilterCountry = ({ darkMode, onSelect }) => {
 
 FilterCountry.propTypes = {
   darkMode: PropTypes.any,
-  onSelect: PropTypes.any,
+  setAllCountries: PropTypes.any,
+  setLoading: PropTypes.any,
 };
 
 export default FilterCountry;
