@@ -54,8 +54,7 @@ const FilterCountry = ({ darkMode, setAllCountries, setLoading }) => {
           ? "bg-darkModeElements text-darkModeTextAndLightModeElements"
           : "bg-white text-lightModeInput"
       } w-1/2 h-[50px] md:w-1/6 shadow-md rounded-md flex items-center gap-5 px-5 outline-none relative`}
-      onMouseEnter={() => setShowFilterMenu(true)}
-      onMouseLeave={() => setShowFilterMenu(false)}
+      onClick={() => setShowFilterMenu((prevState) => !prevState)}
     >
       <button className="filter_btn">Filter By Region</button>
       {showFilterMenu && (
@@ -64,7 +63,7 @@ const FilterCountry = ({ darkMode, setAllCountries, setLoading }) => {
             darkMode
               ? "bg-darkModeElements text-darkModeTextAndLightModeElements"
               : "bg-white text-lightModeInput"
-          } absolute w-full top-[52px] left-0 flex flex-col items-start z-30 rounded-md shadow-md py-3 px-5 cursor-pointer`}
+          } absolute w-full top-[55px] left-0 flex flex-col items-start z-30 rounded-md shadow-md py-3 px-5 cursor-pointer`}
         >
           {regions.map((region) => {
             return (
