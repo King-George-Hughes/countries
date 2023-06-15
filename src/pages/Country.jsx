@@ -39,10 +39,10 @@ const Country = ({ darkMode }) => {
     name,
     nativeName,
     population,
-    region,
-    capital,
+    region = "N/A",
+    capital = "N/A",
     flags,
-    subregion,
+    subregion = "N/A",
     topLevelDomain,
     currencies,
     languages,
@@ -104,11 +104,11 @@ const Country = ({ darkMode }) => {
                 </h5>
                 <h5 className="text-sm my-2">
                   <span className="font-bold">Sub Region: </span>
-                  {subregion ? subregion : "NA"}
+                  {subregion}
                 </h5>
                 <h5 className="text-sm my-2">
                   <span className="font-bold">Capital: </span>
-                  {capital ? capital : "NA"}
+                  {capital}
                 </h5>
               </motion.div>
               <motion.div variants={countryVariant} className="w-full md:w-1/2">
@@ -145,7 +145,7 @@ const Country = ({ darkMode }) => {
                         </span>
                       );
                     })
-                  : "NA"}
+                  : "N/A"}
               </motion.h5>
             </div>
           </div>
