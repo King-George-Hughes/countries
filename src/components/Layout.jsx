@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
-import { NavBar } from ".";
 
-const Layout = ({ children, darkMode, toggleDarkMode }) => {
+const Layout = ({ children }) => {
   return (
     <>
       {/* <NavBar darkMode={darkMode} toggleDarkMode={toggleDarkMode} /> */}
@@ -13,8 +12,6 @@ const Layout = ({ children, darkMode, toggleDarkMode }) => {
 
 Layout.propTypes = {
   children: PropTypes.any,
-  darkMode: PropTypes.any,
-  toggleDarkMode: PropTypes.any,
 };
 
 export default Layout;
