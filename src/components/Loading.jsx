@@ -9,7 +9,8 @@ const Loading = ({ darkMode }) => {
           : "bg-lightModeBackground text-lightModeText"
       }`}
     >
-      <h1 className="text-3xl md:text-5xl">Loading...</h1>
+      {/* <h1 className="text-3xl md:text-5xl">Loading...</h1> */}
+      <div className="spinner" />
     </div>
   );
 };
