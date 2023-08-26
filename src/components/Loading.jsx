@@ -10,7 +10,7 @@ const Loading = ({ darkMode }) => {
       }`}
     >
       {/* <h1 className="text-3xl md:text-5xl">Loading...</h1> */}
-      <div className="spinner" />
+      <div className={darkMode ? "spinner darkmode" : "spinner lightmode"} />
     </div>
   );
 };
